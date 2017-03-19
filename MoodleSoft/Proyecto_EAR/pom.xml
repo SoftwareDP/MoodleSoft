@@ -1,0 +1,62 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>co.edu.uniquindio.software</groupId>
+		<artifactId>MoodleSoft</artifactId>
+		<version>1.0.0</version>
+	</parent>
+	<artifactId>Proyecto_EAR</artifactId>
+	<packaging>ear</packaging>
+	<name>Proyecto EAR</name>
+	<description>proyecto que contiene los sub-proyectos</description>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.wildfly.plugins</groupId>
+				<artifactId>wildfly-maven-plugin</artifactId>
+				<version>1.0.2.Final</version>
+				<configuration>
+					<filename>${project.artifactId}-1.0.0.ear</filename>
+					<skip>false</skip>
+					<hostname>${wildfly-hostname}</hostname>
+					<port>${wildfly-port}</port>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+					    <goal>
+                           deploy
+                        </goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+	<dependencies>
+		<dependency>
+			<groupId>co.edu.uniquindio.software</groupId>
+			<artifactId>Proyecto_JPA</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>co.edu.uniquindio.software</groupId>
+			<artifactId>Proyecto_Prueba</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>co.edu.uniquindio.software</groupId>
+			<artifactId>Proyecto_EJB</artifactId>
+			<version>1.0.0</version>
+			<type>ejb</type>
+		</dependency>
+		<dependency>
+			<groupId>co.edu.uniquindio.software</groupId>
+			<artifactId>Proyecto_WEB</artifactId>
+			<version>1.0.0</version>
+			<type>war</type>
+		</dependency>
+	</dependencies>
+</project>
