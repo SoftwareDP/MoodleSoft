@@ -16,7 +16,8 @@ import javax.persistence.Table;
 
 @Entity(name = "tema")
 @Table(name = "tema")
-@NamedQueries({ @NamedQuery(name = Tema.BUSCARPORNOMBRE, query = "select t from tema t where t.nombre=?1") })
+@NamedQueries({ @NamedQuery(name = Tema.BUSCARPORNOMBRE, query = "select t from tema t where t.nombre=?1"),
+	@NamedQuery(name=Tema.BUSCAR_TEMAS,query="select t from tema t")})
 public class Tema implements Serializable {
 
 	/**
@@ -29,6 +30,7 @@ public class Tema implements Serializable {
 	 */
 
 	public static final String BUSCARPORNOMBRE = "tema.buscarpornombre";
+	public static final String BUSCAR_TEMAS="tema.temas";
 
 	/**
 	 * Atributos de la entidad tema

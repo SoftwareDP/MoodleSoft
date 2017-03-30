@@ -1,32 +1,45 @@
 package co.edu.uniquindio.moodlesoft.ejbs;
 
+import java.io.Serializable;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 
 import co.edu.uniquindio.moodlesoft.entidades.Tema;
 
 @Stateless
 @LocalBean
-public class TemaEJB {
+public class TemaEJB extends EJBGenerico<Tema> implements Serializable {
 
-	@PersistenceContext(unitName = "persistencia")
-	protected transient EntityManager em;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Override
+	public void setClase(Class<Tema> clase) {
+		dao.setClase(clase);
+	}
+	
+
+	@PostConstruct
+	public void init() {
+		super.init();
+		setClase(Tema.class);
+	}
+	
+	
 
 	/**
 	 * Metodo que permite la persistencia de un Tema en la base de datos
 	 * 
-	 * @param pTema
-	 *            El tema a persistir
+	 * @param pTema El tema a persistir
 	 */
 	public boolean crearTema(Tema pTema) {
-		Tema tema = buscarTema(pTema.getNombre());
-		if (tema != null) {
-			em.persist(pTema);
+		if (buscarTema(pTema.getNombre())==null) {
+			dao.crear(pTema);
 			return true;
 		}
 		return false;
@@ -36,8 +49,8 @@ public class TemaEJB {
 	 * Eliminar tema con datos que esten en el tema
 	 */
 	public boolean eliminarTema(Tema tema) {
-		if (em.find(null, tema.getIdTema()) != null) {
-			em.remove(tema);
+		if (dao.buscar(tema) != null) {
+			dao.eliminar(tema);
 			return true;
 		} else {
 			return false;
@@ -46,8 +59,8 @@ public class TemaEJB {
 	}
 	
 	public boolean editarTema(Tema tema){
-		if(buscarTema(tema.getNombre())==null){
-			em.merge(tema);
+		if(buscarTema(tema.getNombre())!=null){
+			dao.editar(tema);
 			return true;
 		}
 		return false;
@@ -61,10 +74,14 @@ public class TemaEJB {
 	 * @return El tema correspondiente al parametro de buscaqueda
 	 */
 	public Tema buscarTema(String nombre) {
-		Query query = em.createNamedQuery(Tema.BUSCARPORNOMBRE);
-		query.setParameter(1, nombre);
-		List<Tema> res = query.getResultList();
+		List<Tema> res = dao.ejecutarNamedQuery(Tema.BUSCARPORNOMBRE, nombre);
 		return res.size() == 0 ? null : res.get(0);
 	}
+	
+	public List listarTemas(){
+		return dao.ejecutarNamedQuery(Tema.BUSCAR_TEMAS);
+	}
+
+	
 
 }

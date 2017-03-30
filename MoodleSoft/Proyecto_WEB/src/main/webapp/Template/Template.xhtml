@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile">
+
+<h:head>
+	<title><ui:insert name="title">MoodleSoft</ui:insert></title>
+	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputStylesheet library="css" name="materialize.css" />
+	<h:outputScript library="js" name="materialize.js" />
+</h:head>
+
+<h:body>
+	<pm:page id="first">
+		<pm:header title="TabMenu" fixed="true">
+			<p:tabMenu activeIndex="#{param.i}">
+				<p:menuitem value="Inicio" outcome="/pages/CrearTema.xhtml"
+					icon="ui-icon-home">
+					<f:param name="i" value="0" />
+				</p:menuitem>
+				<p:menuitem value="Crear Tema" outcome="/pages/CrearTema.xhtml"
+					icon="ui-icon-document">
+					<f:param name="i" value="1" />
+				</p:menuitem>
+				<p:menuitem value="Social" outcome="/pages/CrearTema.xhtml"
+					icon="ui-icon-person">
+					<f:param name="i" value="2" />
+				</p:menuitem>
+			</p:tabMenu>
+		</pm:header>
+		<pm:content>
+			<ui:insert name="editar">
+			</ui:insert>
+		</pm:content>
+
+
+		<pm:footer>
+			<div class="container">
+				<div class="row">
+					<div class="col l6 s12">
+						<h4 class="white-text">Administracion de contenido MoodleSoft</h4>
+						<p class="grey-text text-lighten-4">PacmanSoft.</p>
+					</div>
+				</div>
+			</div>
+			<div class="footer-copyright">
+				<div class="container">
+					<h:form>
+                          © 2017. <p:commandLink id="david"
+							style="color:Black" onclick="viewId()" value="J.David Sanchez, Arley Rico, J Camilo Pacheco , Carlos Sanchez" />. All rights reserved.
+                      </h:form>
+					<script>
+						function viewId() {
+							window.open("https://www.facebook.com/pacmanCGO");
+						}
+					</script>
+				</div>
+			</div>
+
+
+		</pm:footer>
+
+	</pm:page>
+</h:body>
+
+</html>

@@ -1,18 +1,32 @@
 package co.edu.uniquindio.moodlesoft.bean;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
 import co.edu.uniquindio.moodlesoft.ejbs.TemaEJB;
 import co.edu.uniquindio.moodlesoft.entidades.Tema;
 
+@ManagedBean(name = "formularioTemaBean")
+@ViewScoped
 public class FormularioTemaBean {
 
 
+	private List<Tema> temas;
 	
 	public Tema tema=new Tema();
 
 	@Inject
-	private TemaEJB temaEJB;
+	private  TemaEJB temaEJB;
+	
+	@PostConstruct
+	public void init(){
+		temas=new ArrayList<>();
+	}
 
 	/**
 	 * Metodo que permite ingresar un registro a la base de datos, en la tabla
@@ -21,7 +35,6 @@ public class FormularioTemaBean {
 	public void registrarTema() {
 		temaEJB.crearTema(tema);
 		limpiarCampos();
-
 	}
 
 	/**
@@ -30,6 +43,10 @@ public class FormularioTemaBean {
 	public void limpiarCampos() {
 		tema=new Tema();
 	}
+	
+    public void listaTemas(){
+		temas=temaEJB.listarTemas();
+	}
 
 	public Tema getTema() {
 		return tema;
@@ -37,6 +54,20 @@ public class FormularioTemaBean {
 
 	public void setTema(Tema tema) {
 		this.tema = tema;
+	}
+
+	/**
+	 * @return the temas
+	 */
+	public List<Tema> getTemas() {
+		return temas;
+	}
+
+	/**
+	 * @param temas the temas to set
+	 */
+	public void setTemas(List<Tema> temas) {
+		this.temas = temas;
 	}
 
 	
