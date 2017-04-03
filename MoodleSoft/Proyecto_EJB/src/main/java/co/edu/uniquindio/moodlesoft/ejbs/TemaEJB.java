@@ -22,23 +22,21 @@ public class TemaEJB extends EJBGenerico<Tema> implements Serializable {
 	public void setClase(Class<Tema> clase) {
 		dao.setClase(clase);
 	}
-	
 
 	@PostConstruct
 	public void init() {
 		super.init();
 		setClase(Tema.class);
 	}
-	
-	
 
 	/**
 	 * Metodo que permite la persistencia de un Tema en la base de datos
 	 * 
-	 * @param pTema El tema a persistir
+	 * @param pTema
+	 *            El tema a persistir
 	 */
 	public boolean crearTema(Tema pTema) {
-		if (buscarTema(pTema.getNombre())==null) {
+		if (buscarTema(pTema.getNombre()) == null) {
 			dao.crear(pTema);
 			return true;
 		}
@@ -57,9 +55,9 @@ public class TemaEJB extends EJBGenerico<Tema> implements Serializable {
 		}
 
 	}
-	
-	public boolean editarTema(Tema tema){
-		if(buscarTema(tema.getNombre())!=null){
+
+	public boolean editarTema(Tema tema) {
+		if (buscarTema(tema.getNombre()) != null) {
 			dao.editar(tema);
 			return true;
 		}
@@ -77,11 +75,9 @@ public class TemaEJB extends EJBGenerico<Tema> implements Serializable {
 		List<Tema> res = dao.ejecutarNamedQuery(Tema.BUSCARPORNOMBRE, nombre);
 		return res.size() == 0 ? null : res.get(0);
 	}
-	
-	public List listarTemas(){
+
+	public List listarTemas() {
 		return dao.ejecutarNamedQuery(Tema.BUSCAR_TEMAS);
 	}
-
-	
 
 }

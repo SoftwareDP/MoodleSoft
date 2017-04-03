@@ -13,52 +13,92 @@
 
 
 	<ui:define name="editar">
-	<br/>
-	<br/>
-		<h:form>
+		<br />
+		<br />
+		<h:form id="form">
 			<p:fieldset legend="Crear Tema">
 				<h:panelGrid columns="2">
 					<p:outputLabel value="Nombre del Tema:" />
-					<p:inputText value="#{formularioTemaBean.tema.nombre}"/>
+					<p:inputText value="#{formularioTemaBean.tema.nombre}" />
 				</h:panelGrid>
-				
+
 				<h:panelGrid columns="1">
-				<h3 style="margin-top: 0">Descripción</h3>
-				<p>Ingrese la descripcion del Tema.</p>
-				<h:inputTextarea value="#{formularioTemaBean.tema.descripcion}" rows="7"
-					cols="50" queryDelay="750" minQueryLength="4" />
-			    <p:commandButton value="Crear Tema"
-					action="#{formularioTemaBean.registrarTema()}" ajax="false" />
-			    <p:commandButton value="Listar Temas"
-					action="#{formularioTemaBean.listaTemas()}" ajax="false" />		 
+					<h3 style="margin-top: 0">Descripción</h3>
+					<p>Ingrese la descripcion del Tema.</p>
+					<h:inputTextarea value="#{formularioTemaBean.tema.descripcion}"
+						rows="7" cols="50" queryDelay="750" minQueryLength="4" />
+					<p:commandButton value="Crear Tema"
+						action="#{formularioTemaBean.registrarTema()}" ajax="false" />
+					<p:commandButton value="Listar Temas"
+						action="#{formularioTemaBean.listaTemas()}" ajax="false" />
 				</h:panelGrid>
 			</p:fieldset>
-		</h:form>
-		<br/>
-		
-		
-		<h:form id="form">
-			<p:growl id="msgs" showDetail="true" />
 
-			<p:dataTable id="users" value="#{formularioTemaBean.temas}" var="temas"
-				style="margin-bottom:20px">
-				<f:facet name="header">
+			<br />
+
+
+
+			<p:panel id="pnlTemas">
+
+				<p:dataTable id="users" value="#{formularioTemaBean.temas}"
+					var="temas" style="margin-bottom:20px" rows="3" paginator="true"
+					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+					<f:facet name="header">
                 tabla de temas
                 </f:facet>
-            
-				<p:column headerText="N°">
-					<h:outputText value="#{temas.idTema}"></h:outputText>
-				</p:column>
-				
-				<p:column headerText="Nombre">
-					<h:outputText value="#{temas.nombre}"></h:outputText>
-				</p:column>
-			</p:dataTable>
-			
-			
+
+					<p:column headerText="N°">
+						<h:outputText value="#{temas.idTema}"></h:outputText>
+					</p:column>
+
+					<p:column headerText="Nombre">
+						<h:outputText value="#{temas.nombre}"></h:outputText>
+					</p:column>
+
+					<p:column style="width:32px;text-align: center">
+						<p:commandButton update=":first:form:temaDetail"
+							oncomplete="PF('temaDialog').show()" icon="ui-icon-search"
+							title="View">
+							<f:setPropertyActionListener value="#{temas}"
+								target="#{formularioTemaBean.temaSeleccionado}" />
+						</p:commandButton>
+					</p:column>
+
+				</p:dataTable>
+			</p:panel>
+
+			<p:dialog header="Tema" widgetVar="temaDialog" modal="true"
+				showEffect="fade" hideEffect="fade" resizable="false">
+				<p:outputPanel id="temaDetail" style="text-align:center;">
+					<p:panelGrid columns="2"
+						rendered="#{not empty formularioTemaBean.temaSeleccionado}"
+						columnClasses="label,value">
+
+						<h:outputText value="Id:" />
+						<h:outputText
+							value="#{formularioTemaBean.temaSeleccionado.idTema}" />
+
+						<h:outputText value="Nombre" />
+						<h:outputText
+							value="#{formularioTemaBean.temaSeleccionado.nombre}" />
+
+						<h:outputText value="Descripcion" />
+						<h:inputTextarea
+							value="#{formularioTemaBean.temaSeleccionado.descripcion}" />
+						<p:commandButton value="Modificar Tema"
+							action="#{formularioTemaBean.modificarTema()}" ajax="false" />
+
+					</p:panelGrid>
+				</p:outputPanel>
+			</p:dialog>
+
+
+
+
+			<p:commandButton value="Ver"
+				action="#{formularioTemaBean.mostrarInfoTema()}" ajax="false" />
 		</h:form>
-		
-		
+
 	</ui:define>
 
 
