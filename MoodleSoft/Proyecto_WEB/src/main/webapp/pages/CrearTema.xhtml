@@ -37,7 +37,6 @@
 			<br />
 
 
-
 			<p:panel id="pnlTemas">
 
 				<p:dataTable id="users" value="#{formularioTemaBean.temas}"
@@ -55,21 +54,29 @@
 						<h:outputText value="#{temas.nombre}"></h:outputText>
 					</p:column>
 
-					<p:column style="width:32px;text-align: center">
-						<p:commandButton update=":first:form:temaDetail"
-							oncomplete="PF('temaDialog').show()" icon="ui-icon-search"
-							title="View">
+					<p:column style="width:40px;text-align: center">
+
+						<p:commandButton update=":first:form:temaDetailVer"
+							oncomplete="PF('temaDetalleVer').show()" icon="ui-icon-extlink"
+							title="Ver">
 							<f:setPropertyActionListener value="#{temas}"
 								target="#{formularioTemaBean.temaSeleccionado}" />
 						</p:commandButton>
-					</p:column>
 
+						<p:commandButton update=":first:form:temaDetailModificar"
+							oncomplete="PF('temaDetalleModificar').show()"
+							icon="ui-icon-pencil" title="Modificar">
+							<f:setPropertyActionListener value="#{temas}"
+								target="#{formularioTemaBean.temaSeleccionado}" />
+						</p:commandButton>
+
+					</p:column>
 				</p:dataTable>
 			</p:panel>
 
-			<p:dialog header="Tema" widgetVar="temaDialog" modal="true"
-				showEffect="fade" hideEffect="fade" resizable="false">
-				<p:outputPanel id="temaDetail" style="text-align:center;">
+			<p:dialog header="Modificar Tema" widgetVar="temaDetalleModificar"
+				modal="true" showEffect="fade" hideEffect="fade">
+				<p:outputPanel id="temaDetailModificar" style="text-align:center;">
 					<p:panelGrid columns="2"
 						rendered="#{not empty formularioTemaBean.temaSeleccionado}"
 						columnClasses="label,value">
@@ -85,23 +92,67 @@
 						<h:outputText value="Descripcion" />
 						<h:inputTextarea
 							value="#{formularioTemaBean.temaSeleccionado.descripcion}" />
+
+						<h:outputText value="Cargar Pdf " />
+						<h:form enctype="multipart/form-data">
+							<p:panelGrid columns="1">
+								<p:growl id="messages" showDetail="true" />
+
+								<p:fileUpload value="#{formularioTemaBean.pdf}" mode="simple"
+									skinSimple="true" />
+
+								<p:commandButton value="Cargar PDF" ajax="false"
+									actionListener="#{formularioTemaBean.cargarPdf}" />
+							</p:panelGrid>
+						</h:form>
+
+						<h:outputText value="Nombre" />
+						<h:inputText value="#{formularioTemaBean.multimedia.nombre}" />
+
+						<h:outputText value="Url " />
+						<h:inputText value="#{formularioTemaBean.multimedia.direccion}" />
+
+						<p:commandButton value="Guardar Video"
+							action="#{formularioTemaBean.guardarMultimedia()}" ajax="false" />
+
+					</p:panelGrid>
+
+					<p:commandButton value="Modificar Tema"
+						action="#{formularioTemaBean.modificarTema()}" ajax="false" />
+				</p:outputPanel>
+			</p:dialog>
+
+			<p:dialog header="Detalle Tema" widgetVar="temaDetalleVer"
+				modal="true" showEffect="fade" hideEffect="fade">
+				<p:outputPanel id="temaDetailVer" style="text-align:center;">
+					<p:panelGrid columns="2"
+						rendered="#{not empty formularioTemaBean.temaSeleccionado}"
+						columnClasses="label,value">
+						<h:outputText value="Id:" />
+						<h:outputText
+							value="#{formularioTemaBean.temaSeleccionado.idTema}" />
+
+						<h:outputText value="Nombre" />
+						<h:outputText
+							value="#{formularioTemaBean.temaSeleccionado.nombre}" />
+
+						<h:outputText value="Descripcion" />
+						<h:inputTextarea
+							value="#{formularioTemaBean.temaSeleccionado.descripcion}"
+							disabled="false" />
 						<p:commandButton value="Modificar Tema"
 							action="#{formularioTemaBean.modificarTema()}" ajax="false" />
 
 					</p:panelGrid>
+					<p:media
+						value="https://www.youtube.com/v/JpYPfaLSf1U&amp;hl=en&amp;fs=1&amp;"
+						width="300" height="150" player="flash" />
 				</p:outputPanel>
 			</p:dialog>
 
-
-
-
-			<p:commandButton value="Ver"
-				action="#{formularioTemaBean.mostrarInfoTema()}" ajax="false" />
 		</h:form>
 
 	</ui:define>
-
-
 
 	<ui:define name="footer">
 	</ui:define>

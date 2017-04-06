@@ -1,12 +1,13 @@
 package co.edu.uniquindio.moodlesoft.ejbs;
 
 import java.io.Serializable;
+
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
-
+import co.edu.uniquindio.moodlesoft.ejbs.EJBGenerico;
 import co.edu.uniquindio.moodlesoft.entidades.Tema;
 
 @Stateless
