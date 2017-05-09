@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Moodle login</title>
+	<!-- Compiled and minified CSS -->
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css" />
+	<!-- Compiled and minified JavaScript -->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+	<!--Import jQuery before materialize.js-->
+	<script type="text/javascript"
+		src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<h:outputStylesheet library="css" name="sweetalert.css" />
+	<h:outputScript library="js" name="sweetalert.min.js" />
+	<link rel="stylesheet"
+		href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+
+</h:head>
+<ui:composition template="/Template/Template.xhtml">
+	<ui:define name="header">
+	</ui:define>
+
+
+	<ui:define name="editar">
+
+		<div class="container">
+			<div class="row">
+				<div class="col s10 offset -1">
+					<h:form>
+						<h2>Crear Tema</h2>
+						<div class="col s12 input-field">
+							<h:inputText id="nombreTema"
+								value="#{formularioTemaBean.tema.nombre}" required="true"
+								requiredMessage="el nombre es requerido" />
+							<h:outputLabel for="nombreTema" value="Nombre Tema" />
+						</div>
+						<div class="input-field col s12">
+							<h:inputTextarea value="#{formularioTemaBean.tema.descripcion}"
+								id="textarea1" class="materialize-textarea"></h:inputTextarea>
+							<h:outputLabel for="textarea1" value="Descripción" />
+						</div>
+
+						<div class="col s4 input-field">
+							<h:commandLink value="CrearTema" styleClass="btn btn-medium"
+								action="#{formularioTemaBean.registrarTema()}" />
+						</div>
+					</h:form>
+				</div>
+			</div>
+		</div>
+		<br />
+		<br />
+		<div class="container">
+
+			<div class="col s12">
+				<h:form>
+					<div>
+						<h5 class="center-align">Lista de temas</h5>
+					</div>
+					<p:dataTable value="#{formularioTemaBean.temas}" var="tem"
+						class="bordered responsive-table" reflow="true" rows="10"
+						paginator="true" selectionMode="single"
+						selection="#{formularioTemaBean.temaSeleccionado}"
+						rowKey="#{tem.idTema}">
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="ID" />
+							</f:facet>
+							<h:outputText value="#{tem.idTema}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Nombre" />
+							</f:facet>
+							<h:outputText value="#{tem.nombre}" />
+						</p:column>
+					</p:dataTable>
+					<br />
+					<br />
+					<div class="col s5">
+						<h:commandLink value="Listar Temas" styleClass="btn btn-medium"
+							action="#{formularioTemaBean.listaTemas()}" />
+					</div>
+					<br />
+					<br />
+					<div class="col s5">
+						<h:commandLink value="editar" styleClass="btn btn-medium"
+							action="#{formularioTemaBean.editarTema()}" />
+					</div>
+				</h:form>
+			</div>
+		</div>
+
+		<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+		<script src="resorces/js/materialize.js"></script>
+		<script src="resorces/js/init.js"></script>
+
+		<script>
+		$(document).ready(function() {
+				$('#login-page').css({
+					'height' : window.innerHeight + 'px'
+				});
+				$('.modal-trigger').leanModal();
+				$('select').material_select();
+				
+			}
+		</script>
+		<br />
+		<br />
+
+
+	</ui:define>
+
+	<ui:define name="footer">
+	</ui:define>
+</ui:composition>
+</html>

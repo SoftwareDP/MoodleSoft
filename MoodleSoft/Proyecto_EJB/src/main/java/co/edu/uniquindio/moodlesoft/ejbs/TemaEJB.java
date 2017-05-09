@@ -48,7 +48,8 @@ public class TemaEJB extends EJBGenerico<Tema> implements Serializable {
 	 * Eliminar tema con datos que esten en el tema
 	 */
 	public boolean eliminarTema(Tema tema) {
-		if (dao.buscar(tema) != null) {
+		if (dao.buscar(tema.getIdTema()) != null) {
+			 dao.editar(tema);
 			dao.eliminar(tema);
 			return true;
 		} else {

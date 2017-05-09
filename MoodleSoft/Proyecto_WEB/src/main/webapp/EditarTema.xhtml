@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Moodle Editar Tema</title>
+	<!-- Compiled and minified CSS -->
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css" />
+	<!-- Compiled and minified JavaScript -->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+	<!--Import jQuery before materialize.js-->
+	<script type="text/javascript"
+		src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<h:outputStylesheet library="css" name="sweetalert.css" />
+	<h:outputScript library="js" name="sweetalert.min.js" />
+	<link rel="stylesheet"
+		href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+
+</h:head>
+<ui:composition template="/Template/Template.xhtml">
+	<ui:define name="header">
+	</ui:define>
+
+
+	<ui:define name="editar">
+		<div class="container">
+			<div class="row">
+				<div class="col s10 offset -1">
+					<h:form>
+						<h5>
+							<b>Nombre Tema:</b>
+							<h:outputText value="#{formularioTemaBean.cargarTemaEditar()}" />
+						</h5>
+						<div class="input-field col s12">
+							<h:inputTextarea
+								value="#{formularioTemaBean.temaSeleccionado.descripcion}"
+								id="textarea1" class="materialize-textarea"></h:inputTextarea>
+							<h:outputLabel for="textarea1" value="Descripción" />
+						</div>
+						<div class="col s4 input-field">
+							<h:commandLink value="Editar" styleClass="btn btn-medium"
+								action="#{formularioTemaBean.modificarTema()}" />
+						</div>
+					</h:form>
+				</div>
+			</div>
+		</div>
+		<br />
+		<div class="container">
+			<div class="row">
+				<div class="col s10 offset -1">
+					<h:form enctype="multipart/from-data">
+						<h4>Archivos Multimedia</h4>
+						<br />
+						<div class="file-field input-field">
+							<div class="btn btn-medium">
+								<span>File</span> <input value="#{multimediaBean.file}"
+									type="file" />
+							</div>
+							<div class="file-path-wrapper">
+								<input class="file-path validate" type="text" />
+							</div>
+						</div>
+						<div class="input-field col s12">
+							<h:inputText id="youtube" value="#" />
+							<h:outputLabel for="youtube" value="youtube" />
+						</div>
+						<div class="col s12">
+							<p:selectOneRadio id="city2" value="#" layout="responsive"
+								columns="2">
+								<f:selectItem itemLabel="PDF" itemValue="PDF" />
+								<f:selectItem itemLabel="video" itemValue="video" />
+								<f:selectItem itemLabel="youtube" itemValue="youtube" />
+							</p:selectOneRadio>
+						</div>
+						<h:commandLink value="Guardar" styleClass="btn btn-medium"
+							actionListener="#{multimediaBean.upload()}" />
+					</h:form>
+				</div>
+			</div>
+		</div>
+
+		<div class="container">
+			<div class="row">
+				<div class="col s10 offset -1">
+					<h:form>
+					</h:form>
+				</div>
+			</div>
+		</div>
+		<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+		<script src="resorces/js/materialize.js"></script>
+		<script src="resorces/js/init.js"></script>
+
+		<script>
+		$(document).ready(function() {
+				$('#login-page').css({
+					'height' : window.innerHeight + 'px'
+				});
+				$('select').material_select();
+				
+			}
+		</script>
+	</ui:define>
+</ui:composition>
+</html>

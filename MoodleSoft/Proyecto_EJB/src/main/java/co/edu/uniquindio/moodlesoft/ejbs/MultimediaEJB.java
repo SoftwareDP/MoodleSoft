@@ -53,8 +53,8 @@ public class MultimediaEJB extends EJBGenerico<Multimedia> implements Serializab
 	 *            Nombre del tema a buscar
 	 * @return El tema correspondiente al parametro de buscaqueda
 	 */
-	public Multimedia buscarMultimedia(String nombre) {
+	public String buscarMultimedia(String nombre) {
 		List<Multimedia> res = dao.ejecutarNamedQuery(Multimedia.BUSCARPORNOMBRE, nombre);
-		return res.size() == 0 ? null : res.get(0);
+		return res.size() == 0 ? null : res.get(0).getDireccion().toString();
 	}
 }

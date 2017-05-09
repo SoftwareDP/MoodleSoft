@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Moodle login</title>
+	<!-- Compiled and minified CSS -->
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css" />
+	<!-- Compiled and minified JavaScript -->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+	<!--Import jQuery before materialize.js-->
+	<script type="text/javascript"
+		src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<h:outputStylesheet library="css" name="sweetalert.css" />
+	<h:outputScript library="js" name="sweetalert.min.js" />
+	<link rel="stylesheet"
+		href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+
+</h:head>
+<h:body styleClass="black">
+	<div class="valing-wrapper" id="login.page">
+		<div class="container">
+			<div class="center-alingn">
+				<div class="row">
+					<div class="col s6 offset-s3">
+						<div class="card">
+							<div class="card-content">
+								<img class="col s12 responsive-img" style="max-width: 300px"
+									src="resorces/imagenes/login.png" />
+								<div class="left-alingn">
+									<h:form id="login-form">
+										<p:growl autoUpdate="true" />
+										<div class="row">
+											<div class="col s12 input-field">
+												<h:inputText id="correouser" value="#{loginBean.usuario}"
+													required="true" requiredMessage="correo es requerido" />
+												<h:outputLabel for="correouser" value="Correo Usuario" />
+											</div>
+											<div class="col s12 input-field">
+												<h:inputSecret id="password" value="#{loginBean.password}"
+													required="true" requiredMessage="password requerida" />
+												<h:outputLabel for="password" value="contraseña" />
+											</div>
+											<div class="col s12">
+
+												<p:selectOneRadio id="city2"
+													value="#{loginBean.tipoUsuario}" layout="responsive"
+													columns="2">
+													<f:selectItem itemLabel="Profesor" itemValue="Profesor" />
+													<f:selectItem itemLabel="Estudiante" itemValue="Estudiante" />
+												</p:selectOneRadio>
+											</div>
+
+											<div class="col s12 input-field">
+												<h:commandLink value="Login" styleClass="btn btn-large"
+													action="#{loginBean.login()}" />
+											</div>
+										</div>
+									</h:form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="resorces/js/materialize.js"></script>
+	<script src="resorces/js/init.js"></script>
+	<script>
+		$(document).on("ready", funtion())
+		{
+			$('#login-page').css({
+				'height' : window.innerHeight + 'px'
+			});
+		}
+	</script>
+	<script>
+		$(document).ready(function() {
+			$('select').material_select();
+		});
+	</script>
+</h:body>
+</html>

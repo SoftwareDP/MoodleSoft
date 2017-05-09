@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Moodle login</title>
+	<!-- Compiled and minified CSS -->
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css" />
+	<!-- Compiled and minified JavaScript -->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+	<!--Import jQuery before materialize.js-->
+	<script type="text/javascript"
+		src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<h:outputStylesheet library="css" name="sweetalert.css" />
+	<h:outputScript library="js" name="sweetalert.min.js" />
+	<link rel="stylesheet"
+		href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+
+</h:head>
+<ui:composition template="/Template/Template.xhtml">
+	<ui:define name="header">
+	</ui:define>
+
+
+	<ui:define name="editar">
+	
+	<div class="col s12 m8 offset-m2 l6 offset-l3">
+			<div class="card-panel grey lighten-5 z-depth-1">
+				<div class="row valign-wrapper">
+					<div class="col s2">
+						<img src="resorces/imagenes/jDavid.jpg" alt="" class="circle responsive-img"/>
+					</div>
+					<div class="col s10">
+						<span class="black-text"><h4>Juan David Sanchez Aroca<b></b></h4> <br/> Ingeniero de sistemas y computación en formacion.
+						<br/> Scrum master de empresa PacmanSoft.
+						 </span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col s12 m8 offset-m2 l6 offset-l3">
+			<div class="card-panel grey lighten-5 z-depth-1">
+				<div class="row valign-wrapper">
+					<div class="col s2">
+						<img src="resorces/imagenes/pacheco.jpg" alt="" class="circle responsive-img"/>
+					</div>
+					<div class="col s10">
+						<span class="black-text"> <h4>Juan Camilo Correa Pacheco<b></b></h4> Estudiante de séptimo semestre de ingeniería de sistemas y computación.
+						<br/> Desarrollador Junior de la empresa Pacmansoft. Un soñador.</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col s12 m8 offset-m2 l6 offset-l3">
+			<div class="card-panel grey lighten-5 z-depth-1">
+				<div class="row valign-wrapper">
+					<div class="col s2">
+						<img src="resorces/imagenes/arley.jpg" alt="" class="circle responsive-img"/>
+					</div>
+					<div class="col s10">
+						<span class="black-text"> <h4>Carlos Alberto Sanchez<b></b></h4>Estudiante de ingeniería de sistemas y computación nocturna.
+						<br/> Administrador de la configuracion y desarrollador  de la empresa Pacmansoft. Lider. </span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col s12 m8 offset-m2 l6 offset-l3">
+			<div class="card-panel grey lighten-5 z-depth-1">
+				<div class="row valign-wrapper">
+					<div class="col s2">
+						<img src="resorces/imagenes/arley.jpg" alt="" class="circle responsive-img"/>
+					</div>
+					<div class="col s10">
+						<span class="black-text"><h4>Arley Sneyder Rico<b></b></h4>  Estudiante de ingeniería de sistemas y computación.
+						<br/> Product owner de la empresa Pacmansoft. Lider. </span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+		<script src="resorces/js/materialize.js"></script>
+		<script src="resorces/js/init.js"></script>
+
+		<script>
+		$(document).ready(function() {
+				$('#login-page').css({
+					'height' : window.innerHeight + 'px'
+				});
+				$('.modal-trigger').leanModal();
+				$('select').material_select();
+				
+			}
+		</script>
+		<br />
+		<br />
+
+
+	</ui:define>
+
+	<ui:define name="footer">
+	</ui:define>
+</ui:composition>
+</html>

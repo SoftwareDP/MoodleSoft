@@ -1,2 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageflow:Pageflow xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14898990787160" configfile="/Proyecto_WEB/src/main/webapp/WEB-INF/faces-config.xml"/>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14898990787160" configfile="/Proyecto_WEB/src/main/webapp/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="pages/Login" x="204" y="348" id="pf14929224258270" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf14929224258271" path="/Login.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="ProfesorInicio" x="504" y="84" id="pf14929224258282" referenceLink="//@navigationRule.3/@fromViewId|" outlinks="pf14939391083228 pf14943516486100" inlinks="pf14929224258271 pf14941773058702" path="/ProfesorInicio.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="CrearTema" id="pf149393910832210" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" outlinks="pf14941773058702" inlinks="pf14939391083228" path="/CrearTema.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="Nosotros.xhtml" x="624" y="19" id="pf14943516486101" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" inlinks="pf14943516486100" path="/Nosotros.xhtml"/>
+  <links id="pf14929224258271" target="pf14929224258282" source="pf14929224258270" outcome="Home"/>
+  <links id="pf14939391083228" target="pf149393910832210" source="pf14929224258282" outcome="CrearTema">
+    <bendPoints d1Width="-265" d1Height="43" d2Width="249" d2Height="127"/>
+  </links>
+  <links id="pf14941773058702" target="pf14929224258282" source="pf149393910832210" outcome="ProfesorInicio">
+    <bendPoints d1Width="275" d1Height="3" d2Width="-236" d2Height="-81"/>
+  </links>
+  <links id="pf14943516486100" target="pf14943516486101" source="pf14929224258282" outcome="Nosotros"/>
+</pageflow:Pageflow>

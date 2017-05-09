@@ -22,7 +22,6 @@ import co.edu.uniquindio.moodlesoft.entidades.Tema;
 public class FormularioTemaBean {
 
 	private List<Tema> temas;
-
 	private Tema tema = new Tema();
 	private Tema temaSeleccionado = new Tema();
 	private UploadedFile pdf;
@@ -47,13 +46,23 @@ public class FormularioTemaBean {
 		temaEJB.crearTema(tema);
 		limpiarCampos();
 	}
+	
+	public void imprimir(){
+		System.out.println(temaSeleccionado.getIdTema());
+	}
 
 	/**
 	 * Metodo que permite modificar el contenido del tema creado
 	 */
-	public void modificarTema() {
+	public String modificarTema() {
 		temaEJB.editarTema(temaSeleccionado);
-		limpiarCampos();
+		return "CrearTema";
+	}
+	
+	public String  eliminartema(){
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("tema");
+		temaEJB.eliminarTema(temaSeleccionado);
+		return "CrearTema";
 	}
 
 	/**
@@ -87,6 +96,9 @@ public class FormularioTemaBean {
 		limpiarCampos();
 	}
 
+	public String  mostrarVideo(){
+		return multimediaEJB.buscarMultimedia(multimedia.getNombre());
+	}
 	/*
 	 * public void mostrarInfoTema() {
 	 * tema.setIdTema(temaSeleccionado.getIdTema());
@@ -144,5 +156,24 @@ public class FormularioTemaBean {
 	public void setPdf(UploadedFile pdf) {
 		this.pdf = pdf;
 	}
+	
+	public String cargarTemaEditar(){
+		temaSeleccionado=(Tema) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("tema");
+		return temaSeleccionado.getNombre();
+	}
+	
+	
+	public String editarTema(){
+		String red="";
+		if(temaSeleccionado!=null){
+			System.out.println("entra");
+			red="EditarTema.jsf";
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("tema", temaSeleccionado);
+		}else{
+			red="CrearTema.jsf";
+		}
+		return red;
+	}
+	
 
 }

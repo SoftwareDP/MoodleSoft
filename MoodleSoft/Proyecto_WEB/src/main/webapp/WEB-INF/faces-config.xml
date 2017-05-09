@@ -3,5 +3,43 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
 	version="2.2">
+	<navigation-rule>
+		<display-name>pages/Login</display-name>
+		<from-view-id>/Login.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>Home</from-outcome>
+			<to-view-id>/ProfesorInicio.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<display-name>CrearTema</display-name>
+		<from-view-id>/CrearTema.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>ProfesorInicio</from-outcome>
+			<to-view-id>/ProfesorInicio.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<display-name>ProfesorInicio</display-name>
+		<from-view-id>/ProfesorInicio.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>CrearTema</from-outcome>
+			<to-view-id>/CrearTema.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+		<navigation-rule>
+		<display-name>ProfesorInicio</display-name>
+		<from-view-id>/ProfesorInicio.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>Nosotros</from-outcome>
+			<to-view-id>/Nosotros.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	
+	
 	
 </faces-config>
