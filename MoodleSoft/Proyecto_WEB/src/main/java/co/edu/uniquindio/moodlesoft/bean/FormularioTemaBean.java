@@ -166,7 +166,7 @@ public class FormularioTemaBean {
 	public String editarTema(){
 		String red="";
 		if(temaSeleccionado!=null){
-			System.out.println("entra");
+			//System.out.println("entra");
 			red="EditarTema.jsf";
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("tema", temaSeleccionado);
 		}else{

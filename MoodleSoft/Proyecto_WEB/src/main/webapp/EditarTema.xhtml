@@ -56,18 +56,15 @@
 		<div class="container">
 			<div class="row">
 				<div class="col s10 offset -1">
-					<h:form enctype="multipart/from-data">
+					<h:form enctype="multipart/form-data">
 						<h4>Archivos Multimedia</h4>
 						<br />
-						<div class="file-field input-field">
-							<div class="btn btn-medium">
-								<span>File</span> <input value="#{multimediaBean.file}"
-									type="file" />
-							</div>
-							<div class="file-path-wrapper">
-								<input class="file-path validate" type="text" />
-							</div>
-						</div>
+
+
+						<p:fileUpload value="#{multimediaBean.file}" mode="simple"
+							skinSimple="true" />
+
+
 						<div class="input-field col s12">
 							<h:inputText id="youtube" value="#" />
 							<h:outputLabel for="youtube" value="youtube" />
@@ -80,8 +77,7 @@
 								<f:selectItem itemLabel="youtube" itemValue="youtube" />
 							</p:selectOneRadio>
 						</div>
-						<h:commandLink value="Guardar" styleClass="btn btn-medium"
-							actionListener="#{multimediaBean.upload()}" />
+						 <p:commandButton value="Submit" ajax="false" actionListener="#{multimediaBean.upload()}"  />
 					</h:form>
 				</div>
 			</div>
