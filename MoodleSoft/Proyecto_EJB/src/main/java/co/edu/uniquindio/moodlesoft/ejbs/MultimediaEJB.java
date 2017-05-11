@@ -17,6 +17,8 @@ public class MultimediaEJB extends EJBGenerico<Multimedia> implements Serializab
 	
 	private static final long serialVersionUID = 1L;
 	
+	private List<Multimedia> listaMultiedia;
+	
 	@Override
 	public void setClase(Class<Multimedia> clase) {
 		dao.setClase(clase);
@@ -57,4 +59,14 @@ public class MultimediaEJB extends EJBGenerico<Multimedia> implements Serializab
 		List<Multimedia> res = dao.ejecutarNamedQuery(Multimedia.BUSCARPORNOMBRE, nombre);
 		return res.size() == 0 ? null : res.get(0).getDireccion().toString();
 	}
+
+	public List<Multimedia> getListaMultiedia() {
+		return listaMultiedia;
+	}
+
+	public void setListaMultiedia(List<Multimedia> listaMultiedia) {
+		this.listaMultiedia = listaMultiedia;
+	}
+	
+	
 }

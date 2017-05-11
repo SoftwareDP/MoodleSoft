@@ -59,38 +59,66 @@
 					<h:form enctype="multipart/form-data">
 						<h4>Archivos Multimedia</h4>
 						<br />
-
-
 						<p:fileUpload value="#{multimediaBean.file}" mode="simple"
-							skinSimple="true" />
-
-
+							skinSimple="true" sizeLimit="10000000" />
 						<div class="input-field col s12">
 							<h:inputText id="youtube" value="#" />
 							<h:outputLabel for="youtube" value="youtube" />
 						</div>
 						<div class="col s12">
-							<p:selectOneRadio id="city2" value="#" layout="responsive"
-								columns="2">
+							<p:selectOneRadio id="city2" value="#{multimediaBean.tipo}"
+								layout="responsive" columns="2">
 								<f:selectItem itemLabel="PDF" itemValue="PDF" />
 								<f:selectItem itemLabel="video" itemValue="video" />
 								<f:selectItem itemLabel="youtube" itemValue="youtube" />
 							</p:selectOneRadio>
 						</div>
-						 <p:commandButton value="Submit" ajax="false" actionListener="#{multimediaBean.upload()}"  />
+						<p:commandButton value="Submit" ajax="false"
+							actionListener="#{multimediaBean.upload()}" />
 					</h:form>
 				</div>
 			</div>
 		</div>
 
-		<div class="container">
-			<div class="row">
-				<div class="col s10 offset -1">
-					<h:form>
-					</h:form>
+		<div class="col s12">
+			<h:form>
+				<div>
+					<h5 class="center-align">Lista PDF</h5>
 				</div>
-			</div>
+				<p:dataTable value="#{formularioTemaBean.temas}" var="tem"
+					class="bordered responsive-table" reflow="true" rows="10"
+					paginator="true" selectionMode="single"
+					selection="#{formularioTemaBean.temaSeleccionado}"
+					rowKey="#{tem.idTema}">
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="ID" />
+						</f:facet>
+						<h:outputText value="#{tem.idTema}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Nombre" />
+						</f:facet>
+						<h:outputText value="#{tem.nombre}" />
+					</p:column>
+				</p:dataTable>
+				<br />
+				<br />
+				<div class="col s5">
+					<h:commandLink value="Listar Temas" styleClass="btn btn-medium"
+						action="#{formularioTemaBean.listaTemas()}" />
+				</div>
+				<br />
+				<br />
+				<div class="col s5">
+					<h:commandLink value="editar" styleClass="btn btn-medium"
+						action="#{formularioTemaBean.editarTema()}" />
+				</div>
+			</h:form>
 		</div>
+
+
 		<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 		<script src="resorces/js/materialize.js"></script>
 		<script src="resorces/js/init.js"></script>

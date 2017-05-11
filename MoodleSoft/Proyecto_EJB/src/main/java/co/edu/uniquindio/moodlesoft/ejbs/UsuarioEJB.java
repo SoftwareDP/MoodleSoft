@@ -17,6 +17,11 @@ import co.edu.uniquindio.moodlesoft.entidades.Usuario;
 @LocalBean
 public class UsuarioEJB extends EJBGenerico<Usuario> implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	public void setClase(Class<Usuario> clase) {
 		dao.setClase(clase);
@@ -36,6 +41,14 @@ public class UsuarioEJB extends EJBGenerico<Usuario> implements Serializable {
 			List<Usuario> res = dao.ejecutarNamedQuery(Estudiante.LOGINESTUDIANTE,correo,password);
 			return res.size() == 0 ? null : res.get(0);
 		}
+	}
+	
+	public boolean editarUsuario(Usuario usuario) {
+		if (dao.buscar(usuario.getIdUsuario()) != null) {
+			dao.editar(usuario);
+			return true;
+		}
+		return false;
 	}
 
 }
