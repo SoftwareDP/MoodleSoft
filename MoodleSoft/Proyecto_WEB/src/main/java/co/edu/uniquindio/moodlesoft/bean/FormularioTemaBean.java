@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -27,10 +28,10 @@ public class FormularioTemaBean {
 	private UploadedFile pdf;
 	private Multimedia multimedia = new Multimedia();
 
-	@Inject
+	@EJB
 	private TemaEJB temaEJB;
 
-	@Inject
+	@EJB
 	private MultimediaEJB multimediaEJB;
 
 	@PostConstruct
@@ -66,7 +67,7 @@ public class FormularioTemaBean {
 	}
 
 	/**
-	 * Método que permite inicializar los atributos
+	 * Metodo que permite inicializar los atributos
 	 */
 	public void limpiarCampos() {
 		tema = new Tema();
@@ -91,10 +92,7 @@ public class FormularioTemaBean {
 		}
 	}
 
-	public void guardarMultimedia() {
-		multimediaEJB.crearMultimedia(multimedia, temaSeleccionado);
-		limpiarCampos();
-	}
+
 
 	public String  mostrarVideo(){
 		return multimediaEJB.buscarMultimedia(multimedia.getNombre());

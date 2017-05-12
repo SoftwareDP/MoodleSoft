@@ -1,9 +1,10 @@
 package co.edu.uniquindio.moodlesoft.bean;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.*;
+import javax.ejb.EJB;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import javax.inject.Inject;
 
 import org.primefaces.context.RequestContext;
 
@@ -19,7 +20,7 @@ public class LoginBean {
 	private String usuario;
 	private String password;
 	private String tipoUsuario;
-	@Inject
+	@EJB
 	private UsuarioEJB usuarioEJB;
 
 	@PostConstruct

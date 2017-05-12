@@ -73,56 +73,136 @@
 								<f:selectItem itemLabel="youtube" itemValue="youtube" />
 							</p:selectOneRadio>
 						</div>
-						<p:commandButton value="Submit" ajax="false"
-							actionListener="#{multimediaBean.upload()}" />
+
+						<br />
+						<br />
+						<div class="col s5">
+							<h:commandLink value="subir" styleClass="btn btn-medium"
+								action="#{multimediaBean.upload()}" />
+						</div>
+
 					</h:form>
 				</div>
 			</div>
 		</div>
 
 		<div class="col s12">
-			<h:form>
+			<h:form id="form">
 				<div>
 					<h5 class="center-align">Lista PDF</h5>
 				</div>
-				<p:dataTable value="#{formularioTemaBean.temas}" var="tem"
+
+				<p:dataTable value="#{multimediaBean.listMultimediaPDF}" var="pdf"
 					class="bordered responsive-table" reflow="true" rows="10"
-					paginator="true" selectionMode="single"
-					selection="#{formularioTemaBean.temaSeleccionado}"
-					rowKey="#{tem.idTema}">
+					paginator="true">
 					<p:column>
 						<f:facet name="header">
 							<h:outputText value="ID" />
 						</f:facet>
-						<h:outputText value="#{tem.idTema}" />
+						<h:outputText value="#{pdf.idMultimedia}" />
 					</p:column>
 					<p:column>
 						<f:facet name="header">
 							<h:outputText value="Nombre" />
 						</f:facet>
-						<h:outputText value="#{tem.nombre}" />
+						<h:outputText value="#{pdf.nombre}" />
+					</p:column>
+					<p:column>
+						<p:commandButton update=":first:form:temaDetailVer"
+							oncomplete="PF('temaDetalleVer').show()" icon="ui-icon-extlink"
+							title="Ver">
+
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+				<br />
+				<br />
+				<div>
+					<h5 class="center-align">Lista Videos</h5>
+				</div>
+				<p:dataTable value="#{multimediaBean.listMultimediaVideos}"
+					var="pdf" class="bordered responsive-table" reflow="true" rows="10"
+					paginator="true">
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="ID" />
+						</f:facet>
+						<h:outputText value="#{pdf.idMultimedia}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Nombre" />
+						</f:facet>
+						<h:outputText value="#{pdf.nombre}" />
+					</p:column>
+					<p:column>
+						<a class="waves-effect waves-light btn" href="#modal1">Modal</a>
+					</p:column>
+				</p:dataTable>
+				<br />
+				<br />
+
+				<div>
+					<h5 class="center-align">Lista Videos youtube</h5>
+				</div>
+				<p:dataTable value="#{multimediaBean.listMultimediaYutube}"
+					var="pdf" class="bordered responsive-table" reflow="true" rows="10"
+					paginator="true">
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="ID" />
+						</f:facet>
+						<h:outputText value="#{pdf.idMultimedia}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Nombre" />
+						</f:facet>
+						<h:outputText value="#{pdf.nombre}" />
 					</p:column>
 				</p:dataTable>
 				<br />
 				<br />
 				<div class="col s5">
-					<h:commandLink value="Listar Temas" styleClass="btn btn-medium"
-						action="#{formularioTemaBean.listaTemas()}" />
+					<h:commandLink value="Listar" styleClass="btn btn-medium"
+						action="#{multimediaBean.cargarTablas()}" />
 				</div>
-				<br />
-				<br />
-				<div class="col s5">
-					<h:commandLink value="editar" styleClass="btn btn-medium"
-						action="#{formularioTemaBean.editarTema()}" />
+
+
+				<p:dialog header="Detalle Tema" widgetVar="temaDetalleVer"
+					modal="true" showEffect="fade" hideEffect="fade">
+					<p:outputPanel id="temaDetailVer" style="text-align:center;">
+						<p:media
+							value="https://www.youtube.com/v/JpYPfaLSf1U&amp;hl=en&amp;fs=1&amp;"
+							width="300" height="150" player="flash" />
+					</p:outputPanel>
+				</p:dialog>
+
+
+				<div id="modal1" class="modal">
+					<div class="modal-content">
+						<h4>Modal Header</h4>
+						<p>A bunch of text</p>
+					</div>
+					<div class="modal-footer">
+						<a href="#!"
+							class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+					</div>
 				</div>
 			</h:form>
 		</div>
 
 
-		<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+		<script src="https://code.jquery.com/jquery-2.1.1.min.js">
+		$(document).ready(function(){
+		    $('.modal').modal();
+		  });
+		  $('#modal1').modal('open');
+		  $('#modal1').modal('close');
+		</script>
 		<script src="resorces/js/materialize.js"></script>
 		<script src="resorces/js/init.js"></script>
-
 		<script>
 		$(document).ready(function() {
 				$('#login-page').css({

@@ -10,12 +10,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+
 import org.apache.commons.io.FilenameUtils;
 import org.primefaces.model.UploadedFile;
 
+import co.edu.uniquindio.moodlesoft.ejbs.MultimediaEJB;
 import co.edu.uniquindio.moodlesoft.entidades.Multimedia;
+import co.edu.uniquindio.moodlesoft.entidades.Tema;
 
 @ManagedBean(name = "multimediaBean")
 @ViewScoped
@@ -28,6 +33,10 @@ public class MultimediaBean {
 	private List<Multimedia> listMultimediaYutube;
 	
 	private String tipo;
+	
+	@EJB
+	
+	private MultimediaEJB multimediaEJB;
 
 	public UploadedFile getFile() {
 		return file;
@@ -44,21 +53,42 @@ public class MultimediaBean {
 		listMultimediaYutube=new ArrayList<>();
 	}
 	
+	public void cargarTablas(){
+		cargarPDF();
+		cargarVideo();
+		cargarYotube();
+	}
 	
-	public void caragarPDF(){
-		
+	public void cargarPDF(){
+		Tema x =(Tema) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("tema");
+		listMultimediaPDF=multimediaEJB.getListaMultiediaPDF(x.getIdTema());
+	}
+	
+	public void cargarYotube(){
+		Tema x =(Tema) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("tema");
+		listMultimediaYutube=multimediaEJB.getListaMultiediaYoutube(x.getIdTema());
+	}
+	public void cargarVideo(){
+		Tema x =(Tema) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("tema");
+		listMultimediaVideos=multimediaEJB.getListaMultiediaVideo(x.getIdTema());
 	}
 	
 	public void upload() {
 		
-		
+		Multimedia multimedia=new Multimedia();
 		Path folder = Paths.get("C:\\Users\\Public");
 		String filename = FilenameUtils.getBaseName(file.getFileName()); 
-		String []extension = file.getFileName().split("\\.");
-		try {
-			Path files=Files.createTempFile(folder,filename,"."+extension[1]);
+		String extension =FilenameUtils.getExtension(file.getFileName());
+		String x= filename+extension;
+		try{
+			Path files=Files.createTempFile(folder,filename,"."+extension);
 			InputStream input = file.getInputstream();
 		    Files.copy(input, files, StandardCopyOption.REPLACE_EXISTING);
+		    multimedia.setDireccion(folder+x);
+		    multimedia.setNombre(x);
+		    multimedia.setTipo(tipo);
+		    multimedia.setTema((Tema)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("tema"));
+		    multimediaEJB.crear(multimedia);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

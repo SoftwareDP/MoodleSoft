@@ -1,8 +1,7 @@
 package co.edu.uniquindio.moodlesoft.bean;
-
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.inject.Inject;
 
 import co.edu.uniquindio.moodlesoft.ejbs.EstudianteEJB;
 import co.edu.uniquindio.moodlesoft.ejbs.UsuarioEJB;
@@ -15,10 +14,10 @@ public class EstudianteBean {
 	private Estudiante estudiante = new Estudiante();
 	private Usuario usuario = new Usuario();
 	
-	@Inject
+	@EJB
 	private EstudianteEJB estudianteEJB;
 	
-	@Inject
+	@EJB
 	private UsuarioEJB usuarioEJB;
 	
 	/**
@@ -37,7 +36,7 @@ public class EstudianteBean {
 	
 
 	/**
-	 * MÃ©todo que permite inicializar los atributos
+	 * Método que permite inicializar los atributos
 	 */
 	public void limpiarCampos() {
 		estudiante = new Estudiante();

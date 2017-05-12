@@ -15,7 +15,7 @@ import co.edu.uniquindio.moodlesoft.entidades.Usuario;
 
 @Stateless
 @LocalBean
-public class UsuarioEJB extends EJBGenerico<Usuario> implements Serializable {
+public class UsuarioEJB extends EJBGenerico<Usuario>implements Serializable {
 
 	/**
 	 * 
@@ -26,23 +26,23 @@ public class UsuarioEJB extends EJBGenerico<Usuario> implements Serializable {
 	public void setClase(Class<Usuario> clase) {
 		dao.setClase(clase);
 	}
+
 	@PostConstruct
 	public void init() {
 		super.init();
 		setClase(Usuario.class);
 	}
 
-
 	public Usuario validarLogin(String correo, String password, String tipoUsuario) {
 		if (tipoUsuario.equals("Profesor")) {
-			List<Usuario> res = dao.ejecutarNamedQuery(Profesor.LOGINPROFESOR,correo,password);
+			List<Usuario> res = dao.ejecutarNamedQuery(Profesor.LOGINPROFESOR, correo, password);
 			return res.size() == 0 ? null : res.get(0);
 		} else {
-			List<Usuario> res = dao.ejecutarNamedQuery(Estudiante.LOGINESTUDIANTE,correo,password);
+			List<Usuario> res = dao.ejecutarNamedQuery(Estudiante.LOGINESTUDIANTE, correo, password);
 			return res.size() == 0 ? null : res.get(0);
 		}
 	}
-	
+
 	public boolean editarUsuario(Usuario usuario) {
 		if (dao.buscar(usuario.getIdUsuario()) != null) {
 			dao.editar(usuario);
