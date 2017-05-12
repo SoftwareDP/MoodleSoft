@@ -30,15 +30,42 @@
 
 
 	<ui:define name="editar">
-		<div class="card-panel">
-			<span class="blue-text text-darken-2"><h4>
-					<b>Informacion de perfil</b>
-				</h4></span> <br /> Nombre:
-			<div class="input-field inline">
-				<h:in id="email" type="email" class="validate"> <label
-					for="email" data-error="wrong" data-success="right">Email</label>
+			<div class="row">
+				<div class="col s10 offset -1">
+					<h:form>
+						<h5>
+							<b>cedula:</b>
+							<h:outputText value="#{loginBean.infoPerfil()}" />
+						</h5>
+						<div class="input-field col s12">
+							<h:inputText
+								value="#{loginBean.usu.nombre}"
+								id="textarea1" class="materialize-textarea"></h:inputText>
+							<h:outputLabel for="textarea1" value="Nombre" />
+						</div>
+						<div class="input-field col s12">
+							<h:inputText
+								value="#{loginBean.usu.correo}"
+								id="text2" class="materialize-textarea"></h:inputText>
+							<h:outputLabel for="text2" value="Correo" />
+						</div>
+						
+						<div class="input-field col s12">
+							<h:inputText
+								value="#{loginBean.usu.contrasena}"
+								id="text3" class="materialize-textarea"></h:inputText>
+							<h:outputLabel for="text3" value="contraseña" />
+						</div>
+						
+						
+						<div class="col s4 input-field">
+							<h:commandLink value="Editar" styleClass="btn btn-medium"
+								action="#{loginBean.editar()}" />
+						</div>
+					</h:form>
+				</div>
 			</div>
-		</div>
+		
 		<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 		<script src="resorces/js/materialize.js"></script>
 		<script src="resorces/js/init.js"></script>

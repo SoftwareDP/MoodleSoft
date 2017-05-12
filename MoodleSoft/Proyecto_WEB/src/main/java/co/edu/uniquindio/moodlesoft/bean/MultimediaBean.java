@@ -11,6 +11,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -75,8 +76,9 @@ public class MultimediaBean {
 	
 	public void upload() {
 		
+		if(tipo!=null||!tipo.isEmpty()){
 		Multimedia multimedia=new Multimedia();
-		Path folder = Paths.get("C:\\Users\\Public");
+		Path folder = Paths.get("/home/juan-david/Documentos/");
 		String filename = FilenameUtils.getBaseName(file.getFileName()); 
 		String extension =FilenameUtils.getExtension(file.getFileName());
 		String x= filename+extension;
@@ -89,12 +91,17 @@ public class MultimediaBean {
 		    multimedia.setTipo(tipo);
 		    multimedia.setTema((Tema)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("tema"));
 		    multimediaEJB.crear(multimedia);
+		    FacesMessage message = new FacesMessage("Succesful", file.getFileName() + " is uploaded.");
+            FacesContext.getCurrentInstance().addMessage(null, message);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		System.out.println("Uploaded file successfully saved in " + file);
+		}
 		
     }
+	
+	
 
 	public String getTipo() {
 		return tipo;

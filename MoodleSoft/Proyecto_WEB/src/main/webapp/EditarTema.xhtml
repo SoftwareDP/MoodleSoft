@@ -10,18 +10,13 @@
 <h:head>
 	<title>Moodle Editar Tema</title>
 	<!-- Compiled and minified CSS -->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
 	<link rel="stylesheet"
 		href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css" />
 	<!-- Compiled and minified JavaScript -->
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
-	<!--Import jQuery before materialize.js-->
 	<script type="text/javascript"
 		src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-	<h:outputStylesheet library="css" name="sweetalert.css" />
-	<h:outputScript library="js" name="sweetalert.min.js" />
-	<link rel="stylesheet"
-		href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 
 </h:head>
 <ui:composition template="/Template/Template.xhtml">
@@ -93,7 +88,7 @@
 				</div>
 
 				<p:dataTable value="#{multimediaBean.listMultimediaPDF}" var="pdf"
-					class="bordered responsive-table" reflow="true" rows="10"
+					styleClass="bordered responsive-table" reflow="true" rows="10"
 					paginator="true">
 					<p:column>
 						<f:facet name="header">
@@ -121,8 +116,8 @@
 					<h5 class="center-align">Lista Videos</h5>
 				</div>
 				<p:dataTable value="#{multimediaBean.listMultimediaVideos}"
-					var="pdf" class="bordered responsive-table" reflow="true" rows="10"
-					paginator="true">
+					var="pdf" styleClass="bordered responsive-table" reflow="true"
+					rows="10" paginator="true">
 					<p:column>
 						<f:facet name="header">
 							<h:outputText value="ID" />
@@ -136,7 +131,7 @@
 						<h:outputText value="#{pdf.nombre}" />
 					</p:column>
 					<p:column>
-						<a class="waves-effect waves-light btn" href="#modal1">Modal</a>
+						<a class="waves-effect waves-light btn" href="modal1">Modal</a>
 					</p:column>
 				</p:dataTable>
 				<br />
@@ -146,8 +141,8 @@
 					<h5 class="center-align">Lista Videos youtube</h5>
 				</div>
 				<p:dataTable value="#{multimediaBean.listMultimediaYutube}"
-					var="pdf" class="bordered responsive-table" reflow="true" rows="10"
-					paginator="true">
+					var="pdf" styleClass="bordered responsive-table" reflow="true"
+					rows="10" paginator="true">
 					<p:column>
 						<f:facet name="header">
 							<h:outputText value="ID" />
@@ -160,6 +155,10 @@
 						</f:facet>
 						<h:outputText value="#{pdf.nombre}" />
 					</p:column>
+					<p:column>
+						<h:commandButton value="submit"
+							class="waves-effect waves-light btn modal-trigger" href="#modal1" />
+					</p:column>
 				</p:dataTable>
 				<br />
 				<br />
@@ -167,40 +166,15 @@
 					<h:commandLink value="Listar" styleClass="btn btn-medium"
 						action="#{multimediaBean.cargarTablas()}" />
 				</div>
-
-
-				<p:dialog header="Detalle Tema" widgetVar="temaDetalleVer"
-					modal="true" showEffect="fade" hideEffect="fade">
-					<p:outputPanel id="temaDetailVer" style="text-align:center;">
-						<p:media
-							value="https://www.youtube.com/v/JpYPfaLSf1U&amp;hl=en&amp;fs=1&amp;"
-							width="300" height="150" player="flash" />
-					</p:outputPanel>
-				</p:dialog>
-
-
-				<div id="modal1" class="modal">
-					<div class="modal-content">
-						<h4>Modal Header</h4>
-						<p>A bunch of text</p>
-					</div>
-					<div class="modal-footer">
-						<a href="#!"
-							class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-					</div>
-				</div>
 			</h:form>
 		</div>
 
 
 
-		<script src="https://code.jquery.com/jquery-2.1.1.min.js">
-		$(document).ready(function(){
-		    $('.modal').modal();
-		  });
-		  $('#modal1').modal('open');
-		  $('#modal1').modal('close');
-		</script>
+
+	
+
+		<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 		<script src="resorces/js/materialize.js"></script>
 		<script src="resorces/js/init.js"></script>
 		<script>
@@ -209,9 +183,9 @@
 					'height' : window.innerHeight + 'px'
 				});
 				$('select').material_select();
-				
-			}
+		      
 		</script>
+
 	</ui:define>
 </ui:composition>
 </html>

@@ -1,6 +1,7 @@
 package co.edu.uniquindio.moodlesoft.ejbs;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.LocalBean;
@@ -37,6 +38,15 @@ public class EstudianteEJB extends EJBGenerico<Estudiante>implements Serializabl
 			return true;
 		}
 		return false;
+	}
+	
+	public List listarEstudiantes(){
+		List<Estudiante> x =dao.ejecutarNamedQuery(Estudiante.LISTAESTUDIANTES);
+		return x;
+	}
+	
+	public void eliminarEstudiante(Estudiante obj){
+		 dao.eliminar(obj);
 	}
 
 }

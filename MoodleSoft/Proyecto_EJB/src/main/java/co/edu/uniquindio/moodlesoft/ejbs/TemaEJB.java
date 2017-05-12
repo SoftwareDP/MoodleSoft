@@ -8,6 +8,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import co.edu.uniquindio.moodlesoft.ejbs.EJBGenerico;
+import co.edu.uniquindio.moodlesoft.entidades.Estudiante;
 import co.edu.uniquindio.moodlesoft.entidades.Tema;
 
 @Stateless
@@ -81,5 +82,5 @@ public class TemaEJB extends EJBGenerico<Tema> implements Serializable {
 	public List listarTemas() {
 		return dao.ejecutarNamedQuery(Tema.BUSCAR_TEMAS);
 	}
-
+	
 }

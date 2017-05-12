@@ -13,8 +13,10 @@ import javax.inject.Inject;
 
 import org.primefaces.model.UploadedFile;
 
+import co.edu.uniquindio.moodlesoft.ejbs.EstudianteEJB;
 import co.edu.uniquindio.moodlesoft.ejbs.MultimediaEJB;
 import co.edu.uniquindio.moodlesoft.ejbs.TemaEJB;
+import co.edu.uniquindio.moodlesoft.entidades.Estudiante;
 import co.edu.uniquindio.moodlesoft.entidades.Multimedia;
 import co.edu.uniquindio.moodlesoft.entidades.Tema;
 
@@ -23,20 +25,26 @@ import co.edu.uniquindio.moodlesoft.entidades.Tema;
 public class FormularioTemaBean {
 
 	private List<Tema> temas;
+	private List<Estudiante> estudiantes;
 	private Tema tema = new Tema();
 	private Tema temaSeleccionado = new Tema();
 	private UploadedFile pdf;
 	private Multimedia multimedia = new Multimedia();
+	private Estudiante esudianteSelecionado=new Estudiante();
 
 	@EJB
 	private TemaEJB temaEJB;
 
 	@EJB
 	private MultimediaEJB multimediaEJB;
+	
+	@EJB
+	private EstudianteEJB estudianteEJB;
 
 	@PostConstruct
 	public void init() {
 		temas = new ArrayList<>();
+		estudiantes=new ArrayList<>();
 	}
 
 	/**
@@ -64,6 +72,11 @@ public class FormularioTemaBean {
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("tema");
 		temaEJB.eliminarTema(temaSeleccionado);
 		return "CrearTema";
+	}
+	
+	public void eliminarEstudiante(){
+		if(esudianteSelecionado!=null)
+		estudianteEJB.eliminarEstudiante(esudianteSelecionado);
 	}
 
 	/**
@@ -172,6 +185,33 @@ public class FormularioTemaBean {
 		}
 		return red;
 	}
+	
+    public void listaEstudiantes(){
+    	estudiantes=estudianteEJB.listarEstudiantes();
+    	System.out.println(estudiantes.size());
+    }
+	
+	public List<Estudiante> getEstudiantes() {
+		return estudiantes;
+	}
+
+	public void setEstudiantes(List<Estudiante> estudiantes) {
+		this.estudiantes = estudiantes;
+	}
+
+	public Estudiante getEsudianteSelecionado() {
+		return esudianteSelecionado;
+	}
+
+	public void setEsudianteSelecionado(Estudiante esudianteSelecionado) {
+		this.esudianteSelecionado = esudianteSelecionado;
+	}
+	
+	
+	
+	
+	
+	
 	
 
 }

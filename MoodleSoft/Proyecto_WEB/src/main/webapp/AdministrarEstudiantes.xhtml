@@ -30,71 +30,52 @@
 
 
 	<ui:define name="editar">
-
-		<div class="container">
-			<div class="row">
-				<div class="col s10 offset -1">
-					<h:form>
-						<h2>Crear Tema</h2>
-						<div class="col s12 input-field">
-							<h:inputText id="nombreTema"
-								value="#{formularioTemaBean.tema.nombre}" required="true"
-								requiredMessage="el nombre es requerido" />
-							<h:outputLabel for="nombreTema" value="Nombre Tema" />
-						</div>
-						<div class="input-field col s12">
-							<h:inputTextarea value="#{formularioTemaBean.tema.descripcion}"
-								id="textarea1" class="materialize-textarea"></h:inputTextarea>
-							<h:outputLabel for="textarea1" value="Descripción" />
-						</div>
-
-						<div class="col s4 input-field">
-							<h:commandLink value="CrearTema" styleClass="btn btn-medium"
-								action="#{formularioTemaBean.registrarTema()}" />
-						</div>
-					</h:form>
-				</div>
-			</div>
-		</div>
-		<br />
-		<br />
 		<div class="container">
 
 			<div class="col s12">
 				<h:form>
 					<div>
-						<h5 class="center-align">Lista de temas</h5>
+						<h5 class="center-align">Lista de estudiantes</h5>
 					</div>
-					<p:dataTable value="#{formularioTemaBean.temas}" var="tem"
-						styleClass="bordered responsive-table" reflow="true" rows="10"
-						paginator="true" selectionMode="single"
-						selection="#{formularioTemaBean.temaSeleccionado}"
-						rowKey="#{tem.idTema}">
+					<p:dataTable value="#{formularioTemaBean.estudiantes}"
+						var="estudiante" styleClass="bordered responsive-table"
+						reflow="true" rows="10" paginator="true" selectionMode="single"
+						selection="#{formularioTemaBean.esudianteSelecionado}"
+						rowKey="#{estudiante.idUsuario}">
 						<p:column>
 							<f:facet name="header">
 								<h:outputText value="ID" />
 							</f:facet>
-							<h:outputText value="#{tem.idTema}" />
+							<h:outputText value="#{estudiante.idUsuario}" />
 						</p:column>
 						<p:column>
 							<f:facet name="header">
 								<h:outputText value="Nombre" />
 							</f:facet>
-							<h:outputText value="#{tem.nombre}" />
+							<h:outputText value="#{estudiante.nombre}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Correo" />
+							</f:facet>
+							<h:outputText value="#{estudiante.correo}" />
+						</p:column>
+
+						<p:column>
+							<div class="col s5">
+								<h:commandLink value="Eliminar" styleClass="btn btn-small"
+									action="#{formularioTemaBean.eliminarEstudiante()}" />
+							</div>
 						</p:column>
 					</p:dataTable>
 					<br />
 					<br />
 					<div class="col s5">
-						<h:commandLink value="Listar Temas" styleClass="btn btn-medium"
-							action="#{formularioTemaBean.listaTemas()}" />
+						<h:commandLink value="Listar Estudiantes" styleClass="btn btn-medium"
+							action="#{formularioTemaBean.listaEstudiantes()}" />
 					</div>
 					<br />
 					<br />
-					<div class="col s5">
-						<h:commandLink value="editar" styleClass="btn btn-medium"
-							action="#{formularioTemaBean.editarTema()}" />
-					</div>
 				</h:form>
 			</div>
 		</div>
@@ -108,6 +89,10 @@
 				$('#login-page').css({
 					'height' : window.innerHeight + 'px'
 				});
+				$('.modal-trigger').leanModal();
+				$('select').material_select();
+				
+			}
 		</script>
 		<br />
 		<br />
