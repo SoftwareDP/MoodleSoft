@@ -81,7 +81,7 @@ public class MultimediaBean {
 		Path folder = Paths.get("/home/juan-david/Documentos/");
 		String filename = FilenameUtils.getBaseName(file.getFileName()); 
 		String extension =FilenameUtils.getExtension(file.getFileName());
-		String x= filename+extension;
+		String x= filename+"."+extension;
 		try{
 			Path files=Files.createTempFile(folder,filename,"."+extension);
 			InputStream input = file.getInputstream();

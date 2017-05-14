@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile">
+
+<h:head>
+	<title><ui:insert name="title">MoodleSoft</ui:insert></title>
+	<!-- Compiled and minified CSS -->
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css" />
+	<!-- Compiled and minified JavaScript -->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+	<!--Import jQuery before materialize.js-->
+	<script type="text/javascript"
+		src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<link rel="stylesheet"
+		href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+</h:head>
+
+<h:body>
+	<pm:page id="first">
+		<pm:header title="TabMenu" fixed="true">
+			<nav class="black" role="navigation">
+			<div class="nav-wrapper container">
+				<ul class="left hide-on-med-and-down">
+					<li><h:form>
+							<h:commandLink value="Inicio" action="EstudianteInicio" />
+						</h:form></li>
+					<li><h:form>
+							<h:commandLink value="Nosotros" action="Nosotros" />
+						</h:form></li>
+					<li><a href="#">Ayuda</a></li>
+
+				</ul>
+
+				<ul id="nav-mobile" class="side-nav">
+					<li><h:form>
+							<h:commandLink value="Inicio" action="EstudianteInicio" />
+						</h:form></li>
+					<li><h:form>
+							<h:commandLink value="Nosotros" action="Nosotros" />
+						</h:form></li>
+					<li><a href="#">Ayuda</a></li>
+
+				</ul>
+
+				<a href="#" data-activates="nav-mobile" class="button-collapse"><i
+					class="material-icons">menu</i></a>
+			</div>
+			</nav>
+		</pm:header>
+		<pm:content>
+			<ui:insert name="editar">
+			</ui:insert>
+		</pm:content>
+
+
+		<pm:footer>
+			<footer class="page-footer black">
+			<div class="container">
+				<div class="row">
+					<div class="col l6 s12">
+						<h5 class="white-text">PacmanSoft</h5>
+						<p class="grey-text text-lighten-4">Nosotros somos un grupo de
+							estudiantes de la universidad del quindio, desarrollando
+							productos a la medida.</p>
+					</div>
+					<div class="col l3 s12">
+						<h5 class="white-text">Contactar</h5>
+						<ul>
+							<li><a class="white-text"
+								href="https://www.facebook.com/pacmanCGO">Juan David Sanchez</a></li>
+							<li><a class="white-text"
+								href="https://www.facebook.com/LutzMage">Juan Camilo Pacheco</a></li>
+							<li><a class="white-text"
+								href="https://www.facebook.com/ArleySneyderR">Arley rico</a></li>
+							<li><a class="white-text" href="#!">Carlos sanchez</a></li>
+
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="footer-copyright">
+				<div class="container">
+					©Made by <a class="brown-text text-lighten-3 "
+						href="https://github.com/SoftwareDP">PacmanSoft</a>
+				</div>
+			</div>
+			</footer>
+		</pm:footer>
+	</pm:page>
+	<!--  Scripts-->
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="/resorces/js/materialize.js"></script>
+	<script src="/resorces/js/init.js"></script>
+</h:body>
+
+</html>

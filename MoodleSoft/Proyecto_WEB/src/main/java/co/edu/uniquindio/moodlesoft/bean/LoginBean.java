@@ -8,6 +8,7 @@ import javax.faces.context.FacesContext;
 
 import org.primefaces.context.RequestContext;
 
+import co.edu.uniquindio.moodlesoft.ejbs.EstudianteEJB;
 import co.edu.uniquindio.moodlesoft.ejbs.ProfesorEJB;
 import co.edu.uniquindio.moodlesoft.ejbs.UsuarioEJB;
 import co.edu.uniquindio.moodlesoft.entidades.Estudiante;
@@ -23,15 +24,19 @@ public class LoginBean {
 	private String tipoUsuario;
 	private Usuario usu = new Usuario();
 	private Profesor pro = new Profesor();
+	private Estudiante est= new Estudiante();
 	@EJB
 	private UsuarioEJB usuarioEJB;
 
 	@EJB
 	private ProfesorEJB profesorEJB;
 
+	@EJB
+	private EstudianteEJB estudianteEJB;
+
 	@PostConstruct
 	private void init() {
-
+        
 	}
 
 	public String login() {
@@ -50,8 +55,8 @@ public class LoginBean {
 			} else if (u instanceof Estudiante) {
 				if (u != null) {
 					context.execute("swal('Ingreso','Gracias por iniciar','success')");
-					redireccion = "Home";
-					FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("estudiante", u);
+					redireccion = "EstudianteInicio";
+					FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", u);
 				}
 				usuario = password = tipoUsuario = "";
 				return redireccion;
@@ -62,18 +67,30 @@ public class LoginBean {
 		return redireccion;
 	}
 
+	/**
+	 * Metodo que identifica que tipo de usuario ingresa
+	 * @return idUsuario
+	 */
 	public String infoPerfil() {
-
 		usu = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
-		pro = (Profesor) usu;
-
+		if(usu!=null){
+			if(usu instanceof Profesor){
+				pro = (Profesor) usu;
+			}else 
+      	  est=(Estudiante) usu;
+		}	
 		return pro.getCedula();
 	}
-
+	
+	/**
+	 * Metodo que permite editar los campos de usuario
+	 */
 	public void editar() {
-
 		if (pro != null)
 			profesorEJB.editarUsuario(pro);
+		else if(est!=null){
+			estudianteEJB.editarUsuario(est);
+		}
 	}
 
 	/**

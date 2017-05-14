@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14898990787160" configfile="/Proyecto_WEB/src/main/webapp/WEB-INF/faces-config.xml">
-  <nodes xsi:type="pageflow:PFPage" name="pages/Login" x="204" y="348" id="pf14929224258270" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf14929224258271" path="/Login.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="ProfesorInicio" x="504" y="84" id="pf14929224258282" referenceLink="//@navigationRule.4/@fromViewId|" outlinks="pf14939391083228 pf14943516486100" inlinks="pf14929224258271 pf14941773058702 pf14945905673660" path="/ProfesorInicio.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="CrearTema" id="pf149393910832210" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" outlinks="pf14941773058702" inlinks="pf14939391083228" path="/CrearTema.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="Nosotros.xhtml" x="624" y="19" id="pf14943516486101" referenceLink="//@navigationRule.4/@navigationCase.0/@toViewId|" inlinks="pf14943516486100" path="/Nosotros.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="AdministrarEstudiantes" id="pf14945905673671" referenceLink="//@navigationRule.2/@fromViewId|" outlinks="pf14945905673660" path="/AdministrarEstudiantes.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/Login" x="122" y="178" id="pf14929224258270" referenceLink="//@navigationRule.7/@navigationCase.0/@toViewId|" outlinks="pf14929224258271 pf14947943667080" inlinks="pf14947943667081" path="/Login.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="ProfesorInicio" x="338" y="562" id="pf14929224258282" referenceLink="//@navigationRule.7/@fromViewId|" outlinks="pf14939391083228 pf14943516486100" inlinks="pf14929224258271 pf14941773058702 pf14945905673660 pf14946011284542" path="/ProfesorInicio.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="CrearTema" x="122" y="562" id="pf149393910832210" referenceLink="//@navigationRule.5/@navigationCase.0/@toViewId|" outlinks="pf14941773058702" inlinks="pf14939391083228" path="/CrearTema.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="Nosotros.xhtml" x="554" y="562" id="pf14943516486101" referenceLink="//@navigationRule.7/@navigationCase.0/@toViewId|" inlinks="pf14943516486100" path="/Nosotros.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="AdministrarEstudiantes" x="122" y="946" id="pf14945905673671" referenceLink="//@navigationRule.3/@fromViewId|" outlinks="pf14945905673660" path="/AdministrarEstudiantes.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="Perfil" x="122" y="1330" id="pf14946011284583" referenceLink="//@navigationRule.4/@fromViewId|" outlinks="pf14946011284542" path="/Perfil.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="EstudianteInicio.xhtml" x="338" y="178" id="pf14947943667112" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf14947943667080" path="/EstudianteInicio.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="RegistroEstudiante" x="372" y="24" id="pf14947943667113" referenceLink="//@navigationRule.7/@fromViewId|" outlinks="pf14947943667081" path="/RegistroEstudiante.xhtml"/>
   <links id="pf14929224258271" target="pf14929224258282" source="pf14929224258270" outcome="Home"/>
   <links id="pf14939391083228" target="pf149393910832210" source="pf14929224258282" outcome="CrearTema">
     <bendPoints d1Width="-265" d1Height="43" d2Width="249" d2Height="127"/>
@@ -14,4 +17,7 @@
   </links>
   <links id="pf14943516486100" target="pf14943516486101" source="pf14929224258282" outcome="Nosotros"/>
   <links id="pf14945905673660" target="pf14929224258282" source="pf14945905673671" outcome="ProfesorInicio"/>
+  <links id="pf14946011284542" target="pf14929224258282" source="pf14946011284583" outcome="ProfesorInicio"/>
+  <links id="pf14947943667080" target="pf14947943667112" source="pf14929224258270" outcome="EstudianteInicio"/>
+  <links id="pf14947943667081" target="pf14929224258270" source="pf14947943667113" outcome="Login"/>
 </pageflow:Pageflow>

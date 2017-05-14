@@ -8,6 +8,7 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
 import co.edu.uniquindio.moodlesoft.entidades.Estudiante;
+import co.edu.uniquindio.moodlesoft.entidades.Profesor;
 
 @Stateless
 @LocalBean
@@ -47,6 +48,15 @@ public class EstudianteEJB extends EJBGenerico<Estudiante>implements Serializabl
 	
 	public void eliminarEstudiante(Estudiante obj){
 		 dao.eliminar(obj);
+	}
+	
+
+	public boolean editarUsuario(Estudiante usuario) {
+		if (dao.buscar(usuario.getIdUsuario()) != null) {
+			dao.editar(usuario);
+			return true;
+		}
+		return false;
 	}
 
 }
