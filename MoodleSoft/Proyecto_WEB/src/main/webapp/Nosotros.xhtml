@@ -9,12 +9,8 @@
 
 <h:head>
 	<title>Moodle login</title>
-	<!-- Compiled and minified CSS -->
-	<link rel="stylesheet"
-		href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css" />
-	<!-- Compiled and minified JavaScript -->
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+	<h:outputStylesheet library="css" name="materialize.css" />
+	<h:outputScript library="js" name="materialize.js" />
 	<!--Import jQuery before materialize.js-->
 	<script type="text/javascript"
 		src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
@@ -30,17 +26,22 @@
 
 
 	<ui:define name="editar">
-	
-	<div class="col s12 m8 offset-m2 l6 offset-l3">
+
+		<div class="col s12 m8 offset-m2 l6 offset-l3">
 			<div class="card-panel grey lighten-5 z-depth-1">
 				<div class="row valign-wrapper">
 					<div class="col s2">
-						<img src="resorces/imagenes/jDavid.jpg" alt="" class="circle responsive-img"/>
+						<img src="resources/imagenes/pacheco.jpg" alt=""
+							class="circle responsive-img" />
 					</div>
 					<div class="col s10">
-						<span class="black-text"><h4>Juan David Sanchez Aroca<b></b></h4> <br/> Ingeniero de sistemas y computación en formacion.
-						<br/> Scrum master de empresa PacmanSoft.
-						 </span>
+						<span class="black-text">
+							<h4>
+								Juan Camilo Correa Pacheco<b></b>
+							</h4> Estudiante de séptimo semestre de ingeniería de sistemas y
+							computación. <br /> Desarrollador Junior de la empresa
+							Pacmansoft. Un soñador.
+						</span>
 					</div>
 				</div>
 			</div>
@@ -50,24 +51,32 @@
 			<div class="card-panel grey lighten-5 z-depth-1">
 				<div class="row valign-wrapper">
 					<div class="col s2">
-						<img src="resorces/imagenes/pacheco.jpg" alt="" class="circle responsive-img"/>
+						<img src="resources/imagenes/arley.jpg" alt=""
+							class="circle responsive-img" />
 					</div>
 					<div class="col s10">
-						<span class="black-text"> <h4>Juan Camilo Correa Pacheco<b></b></h4> Estudiante de séptimo semestre de ingeniería de sistemas y computación.
-						<br/> Desarrollador Junior de la empresa Pacmansoft. Un soñador.</span>
+						<span class="black-text"><h4>
+								Arley Sneyder Rico<b></b>
+							</h4> Estudiante de ingeniería de sistemas y computación. <br />
+							Product owner de la empresa Pacmansoft. Lider. </span>
 					</div>
 				</div>
 			</div>
 		</div>
+
+
 		<div class="col s12 m8 offset-m2 l6 offset-l3">
 			<div class="card-panel grey lighten-5 z-depth-1">
 				<div class="row valign-wrapper">
 					<div class="col s2">
-						<img src="resorces/imagenes/carlos.jpg" alt="" class="circle responsive-img"/>
+						<img src="resources/imagenes/jDavid.jpg" alt=""
+							class="circle responsive-img" />
 					</div>
 					<div class="col s10">
-						<span class="black-text"> <h4>Carlos Alberto Sanchez<b></b></h4>Estudiante de ingeniería de sistemas y computación nocturna.
-						<br/> Administrador de la configuracion y desarrollador  de la empresa Pacmansoft. Lider. </span>
+						<span class="black-text"><h4>
+								Juan David Sanchez Aroca<b></b>
+							</h4> <br /> Ingeniero de sistemas y computación en formacion. <br />
+							Scrum master de empresa PacmanSoft. </span>
 					</div>
 				</div>
 			</div>
@@ -77,27 +86,34 @@
 			<div class="card-panel grey lighten-5 z-depth-1">
 				<div class="row valign-wrapper">
 					<div class="col s2">
-						<img src="resorces/imagenes/arley.jpg" alt="" class="circle responsive-img"/>
+						<img src="resources/imagenes/carlos.jpg" alt=""
+							class="circle responsive-img" />
 					</div>
 					<div class="col s10">
-						<span class="black-text"><h4>Arley Sneyder Rico<b></b></h4>  Estudiante de ingeniería de sistemas y computación.
-						<br/> Product owner de la empresa Pacmansoft. Lider. </span>
+						<span class="black-text">
+							<h4>
+								Carlos Alberto Sanchez<b></b>
+							</h4>Estudiante de ingeniería de sistemas y computación nocturna. <br />
+							Administrador de la configuracion y desarrollador de la empresa
+							Pacmansoft. Lider.
+						</span>
 					</div>
 				</div>
 			</div>
 		</div>
+
+
 
 
 		<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-		<script src="resorces/js/materialize.js"></script>
-		<script src="resorces/js/init.js"></script>
+		<script src="resources/js/materialize.js"></script>
+		<script src="resources/js/init.js"></script>
 
 		<script>
 		$(document).ready(function() {
 				$('#login-page').css({
 					'height' : window.innerHeight + 'px'
 				});
-				$('.modal-trigger').leanModal();
 				$('select').material_select();
 				
 			}

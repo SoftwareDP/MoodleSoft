@@ -9,13 +9,8 @@
 
 <h:head>
 	<title>Moodle login</title>
-	<!-- Compiled and minified CSS -->
-	<link rel="stylesheet"
-		href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css" />
-	<!-- Compiled and minified JavaScript -->
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
-	<!--Import jQuery before materialize.js-->
+	<h:outputStylesheet library="css" name="materialize.css" />
+	<h:outputScript library="js" name="materialize.js" />
 	<script type="text/javascript"
 		src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<h:outputStylesheet library="css" name="sweetalert.css" />
@@ -30,45 +25,46 @@
 
 
 	<ui:define name="editar">
-			<div class="row">
-				<div class="col s10 offset -1">
-					<h:form>
-						<h5>
-							<b>cedula:</b>
-							<h:outputText value="#{loginBean.infoPerfil()}" />
-						</h5>
-						<div class="input-field col s12">
-							<h:inputText
-								value="#{loginBean.usu.nombre}"
-								id="textarea1" class="materialize-textarea"></h:inputText>
-							<h:outputLabel for="textarea1" value="Nombre" />
-						</div>
-						<div class="input-field col s12">
-							<h:inputText
-								value="#{loginBean.usu.correo}"
-								id="text2" class="materialize-textarea"></h:inputText>
-							<h:outputLabel for="text2" value="Correo" />
-						</div>
-						
-						<div class="input-field col s12">
-							<h:inputText
-								value="#{loginBean.usu.contrasena}"
-								id="text3" class="materialize-textarea"></h:inputText>
-							<h:outputLabel for="text3" value="contraseña" />
-						</div>
-						
-						
-						<div class="col s4 input-field">
-							<h:commandLink value="Editar" styleClass="btn btn-medium"
-								action="#{loginBean.editar()}" />
-						</div>
-					</h:form>
-				</div>
+		<div class="row">
+			<div class="col s10 offset -1">
+				<h:form>
+					<h5>
+						<b>Datos personales:</b>
+					</h5>
+					<div class="input-field col s12">
+						<h:inputText value="#{loginBean.usu.cedula}" id="textcedula"
+							class="materialize-textarea"></h:inputText>
+						<h:outputLabel for="textcedula" value="Cedula" />
+					</div>
+					<div class="input-field col s12">
+						<h:inputText value="#{loginBean.usu.nombre}" id="textarea1"
+							class="materialize-textarea"></h:inputText>
+						<h:outputLabel for="textarea1" value="Nombre" />
+					</div>
+					<div class="input-field col s12">
+						<h:inputText value="#{loginBean.usu.correo}" id="text2"
+							class="materialize-textarea"></h:inputText>
+						<h:outputLabel for="text2" value="Correo" />
+					</div>
+
+					<div class="input-field col s12">
+						<h:inputText value="#{loginBean.usu.contrasena}" id="text3"
+							class="materialize-textarea"></h:inputText>
+						<h:outputLabel for="text3" value="contraseña" />
+					</div>
+
+
+					<div class="col s4 input-field">
+						<h:commandLink value="Editar" styleClass="btn btn-medium"
+							action="#{loginBean.editar()}" />
+					</div>
+				</h:form>
 			</div>
-		
+		</div>
+
 		<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-		<script src="resorces/js/materialize.js"></script>
-		<script src="resorces/js/init.js"></script>
+		<script src="resources/js/materialize.js"></script>
+		<script src="resources/js/init.js"></script>
 
 		<script>
 		$(document).ready(function() {

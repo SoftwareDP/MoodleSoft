@@ -10,11 +10,8 @@
 <h:head>
 	<title><ui:insert name="title">MoodleSoft</ui:insert></title>
 	<!-- Compiled and minified CSS -->
-	<link rel="stylesheet"
-		href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css" />
-	<!-- Compiled and minified JavaScript -->
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+	<h:outputStylesheet library="css" name="materialize.css" />
+	<h:outputScript library="js" name="materialize.js" />
 	<!--Import jQuery before materialize.js-->
 	<script type="text/javascript"
 		src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
@@ -96,8 +93,8 @@
 	</pm:page>
 	<!--  Scripts-->
 	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-	<script src="/resorces/js/materialize.js"></script>
-	<script src="/resorces/js/init.js"></script>
+	<script src="resources/js/materialize.js"></script>
+	<script src="resources/js/init.js"></script>
 </h:body>
 
 </html>

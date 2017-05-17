@@ -22,7 +22,7 @@ public class LoginBean {
 	private String usuario;
 	private String password;
 	private String tipoUsuario;
-	private Usuario usu = new Usuario();
+	private Usuario usu;
 	private Profesor pro = new Profesor();
 	private Estudiante est= new Estudiante();
 	@EJB
@@ -36,7 +36,8 @@ public class LoginBean {
 
 	@PostConstruct
 	private void init() {
-        
+        usu=new Usuario();
+        infoPerfil();
 	}
 
 	public String login() {
@@ -71,7 +72,7 @@ public class LoginBean {
 	 * Metodo que identifica que tipo de usuario ingresa
 	 * @return idUsuario
 	 */
-	public String infoPerfil() {
+	public void infoPerfil() {
 		usu = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
 		if(usu!=null){
 			if(usu instanceof Profesor){
@@ -79,7 +80,6 @@ public class LoginBean {
 			}else 
       	  est=(Estudiante) usu;
 		}	
-		return pro.getCedula();
 	}
 	
 	/**

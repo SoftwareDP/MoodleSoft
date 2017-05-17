@@ -27,7 +27,7 @@ public class FormularioTemaBean {
 	private List<Tema> temas;
 	private List<Estudiante> estudiantes;
 	private Tema tema = new Tema();
-	private Tema temaSeleccionado = new Tema();
+	private Tema temaSeleccionado;
 	private UploadedFile pdf;
 	private Multimedia multimedia = new Multimedia();
 	private Estudiante esudianteSelecionado=new Estudiante();
@@ -45,6 +45,9 @@ public class FormularioTemaBean {
 	public void init() {
 		temas = new ArrayList<>();
 		estudiantes=new ArrayList<>();
+		temaSeleccionado= new Tema();
+		listaEstudiantes();
+		listaTemas();
 	}
 
 	/**
@@ -54,6 +57,7 @@ public class FormularioTemaBean {
 	public void registrarTema() {
 		temaEJB.crearTema(tema);
 		limpiarCampos();
+		listaTemas();
 	}
 	
 	public void imprimir(){

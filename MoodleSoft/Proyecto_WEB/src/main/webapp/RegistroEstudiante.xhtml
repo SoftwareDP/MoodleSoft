@@ -25,38 +25,86 @@
 </h:head>
 
 <h:body>
-
-	<nav class="black" role="navigation">
+	<nav class="black">
 	<div class="nav-wrapper container">
-		<ul class="left hide-on-med-and-down">
-			<li><h:form>
-					<h:commandLink value="Inicio" action="Nosotros"  />
-				</h:form></li>
-			<li><h:form>
-					<h:commandLink value="Nosotros" action="Nosotros" />
-				</h:form></li>
-			<li><a href="#">Ayuda</a></li>
-
-		</ul>
-
-		<ul id="nav-mobile" class="side-nav">
-			<li><h:form>
-					<h:commandLink value="Inicio" action="ProfesorInicio" />
-				</h:form></li>
-			<li><h:form>
-					<h:commandLink value="Nosotros" action="Nosotros" />
-				</h:form></li>
-			<li><a href="#">Ayuda</a></li>
-
-		</ul>
-
-		<a href="#" data-activates="nav-mobile" class="button-collapse"><i
-			class="material-icons">menu</i></a>
+		<div class="col s12">
+			<h:form>
+				<h:commandLink value="Inicio" action="Login" class="breadcrumb" />
+				<h:commandLink value="Registro" action="#!" class="breadcrumb" />
+			</h:form>
+		</div>
 	</div>
 	</nav>
+	<div class="container">
+		<blockquote class="black-text">Los datos que va a
+			declarar son confidenciales y es su responsabilidad no compartirlo
+			con nadie. Cualquier uso indebido de los mismos facultan a la
+			administración de iniciar las acciones legales pertinentes.</blockquote>
+		<h:form>
+			<p:growl autoUpdate="true" />
+			<div class="row">
+				<div class="input-field col s12 m6 l4">
+					<i class="material-icons grey-text prefix">person_pin</i>
+					<h:inputText id="username" required="true"
+						validatorMessage="Usuario no válido"
+						value="#{estudianteBean.estudiante.nombre}"
+						requiredMessage="Usuario obligatorio">
+					</h:inputText>
+					<h:outputLabel for="username" value="Nombre" />
+				</div>
+				<div class="input-field col s12 m6 l4">
+					<i class="material-icons grey-text prefix">person_pin</i>
+					<h:inputText id="usercedula" required="true"
+						validatorMessage="Usuario no válido"
+						value="#{estudianteBean.estudiante.cedula}"
+						requiredMessage="Usuario obligatorio">
+						<f:validateRegex pattern="^[a-z0-9_-]{3,25}$" />
+					</h:inputText>
+					<h:outputLabel for="usercedula" value="Doc.identificacion" />
+				</div>
+				<div class="input-field col s12 m6 l4">
+					<i class="material-icons grey-text prefix">lock</i>
+					<h:inputText id="email" required="true"
+						validatorMessage="Email con formato incorrecto"
+						value="#{estudianteBean.estudiante.correo}"
+						requiredMessage="Email obligatorio">
+						<f:validateRegex
+							pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+					</h:inputText>
+					<h:outputLabel for="email" value="Email" />
+				</div>
 
+				<div class="input-field col s12 m6 l4">
+					<i class="material-icons grey-text prefix">lock</i>
+					<h:inputSecret id="pass" required="true"
+						validatorMessage="La contraseña debe tener de 6 a 40 caracteres"
+						value="#{estudianteBean.estudiante.contrasena}"
+						requiredMessage="Contraseña obligatoria">
+						<f:validateLength minimum="6" maximum="40" />
+					</h:inputSecret>
+					<h:outputLabel for="pass" value="Contraseña" />
+				</div>
+				<div class="input-field col s12 m6 l4">
+					<i class="material-icons grey-text prefix">lock</i>
+					<h:inputSecret id="repass" required="true"
+						validatorMessage="La contraseña repetida debe tener de 6 a 40 caracteres"
+						value="#{estudianteBean.repass}"
+						requiredMessage="Contraseña a repetir obligatoria">
+						<f:validateLength minimum="6" maximum="40" />
+					</h:inputSecret>
+					<h:outputLabel for="repass" value="Repetir contraseña" />
+				</div>
+				<div class="col s12">
+					<h:commandLink
+						styleClass="waves-effect waves-light btn-large white-text"
+						actionListener="#{estudianteBean.registrarEstudiante()}">
+						<i class="material-icons right">play_arrow</i>Listo
+                        </h:commandLink>
+				</div>
 
-
+			</div>
+		</h:form>
+	</div>
 	<script type="text/javascript" src="resorces/js/materialize.js"></script>
 	<script>
 		$(".button-collapse").sideNav();
